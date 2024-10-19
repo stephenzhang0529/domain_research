@@ -4,11 +4,16 @@
 #include <string.h>
 #include "Domain.h"
 #include "dfs_bfs.h"
+#include "read.h"
 
 //创建节点
 DomainNode* createNode(const char* domain)
 {
     DomainNode* node = (DomainNode*)malloc(sizeof(DomainNode));
+    if (node == NULL)
+    {
+        return NULL;
+    }
     strcpy(node->domain, domain);
     node->firstChild = NULL;
     node->nextSibling = NULL;

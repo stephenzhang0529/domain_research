@@ -50,3 +50,27 @@ void bfs(DomainNode* root)
     }
 
 }
+
+// 分割域名，按从右到左的顺序存储
+int splitDomain(char* domain, char result[][50])
+{
+    //分割
+    int length = 0;
+    char* token = strtok(domain, ".");
+    while (token)
+    {
+        strcpy(result[length++], token);
+        token = strtok(NULL, ".");//再次调用strtok,将第一个参数设为 NULL，表示继续对原始字符串进行分割
+    }
+
+    //反转域名顺序
+    for (int i = 0; i < length / 2; i++)
+    {
+        char temp[50];
+        strcpy(temp, result[i]);
+        strcpy(result[i], result[length - i - 1]);
+        strcpy(result[length - i - 1], temp);
+    }
+
+    return length;
+}
